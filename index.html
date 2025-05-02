@@ -38,27 +38,85 @@
     <script type="text/javascript">
       window.__WEBFLOW_CURRENCY_SETTINGS = { currencyCode: "USD", symbol: "$", decimal: ".", fractionDigits: 2, group: ",", template: '{{wf {"path":"symbol","type":"PlainText"} }} {{wf {"path":"amount","type":"CommercePrice"} }} {{wf {"path":"currencyCode","type":"PlainText"} }}', hideDecimalForWholeNumbers: false };
     </script>
+    <style>
+      /* Base (desktop) styles */
+.main-container-2 {
+  display: flex;
+  gap: 0px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.hero-image-2 {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-text-under {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile override */
+@media (max-width: 768px) {
+  #footer-links {
+    display: none !important;
+  }
+  .main-container-2 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .hero-image-2 {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .hero-text-under {
+    width: 100%;
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+  }
+
+  .hero-text-under .hero-text {
+    width: 100% !important;
+  }
+}
+
+    </style>
   </head>
   <body>
 
 
     <section class="hero-section">
-      <div class="w-layout-blockcontainer main-container-2 w-container" style="display: flex; gap: 20px; justify-content: center">
-        <img class="hero-image-2" src="images/landing.png" alt="" style="opacity: 0" sizes="(max-width: 479px) 100vw, (max-width: 767px) 170px, (max-width: 991px) 250px, (max-width: 1919px) 370px, 500px" data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5db" loading="lazy" srcset="images/landing.png 500w, images/landing.png 800w, images/landing.png 1080w, images/landing.png 1600w, images/landing.png 2260w" />
+      <div class="w-layout-blockcontainer main-container-2 w-container">
+        <img class="hero-image-2" src="images/landing.png" alt="Quote Father" style="opacity: 0"
+          sizes="(max-width: 479px) 100vw, (max-width: 767px) 170px, (max-width: 991px) 250px, (max-width: 1919px) 370px, 500px"
+          data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5db" loading="lazy"
+          srcset="images/landing.png 500w, images/landing.png 800w, images/landing.png 1080w, images/landing.png 1600w, images/landing.png 2260w" />
+        
         <div class="hero-text-under">
-          <div class="hero-text" data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5d9" style="width: 50vw">EMPOWERING Ideas, Structuring Dialogue,<br />Transforming Decisions with Technology.</div>
+          <div class="hero-text" data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5d9" style="width: 50vw">
+            EMPOWERING Ideas, Structuring Dialogue,<br />Transforming Decisions with Technology.
+          </div>
         </div>
       </div>
+    
       <br />
+    
       <div class="hero-big-text">
         <h1 data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5d9" style="opacity: 0" class="hero-heading">quote</h1>
         <h1 data-w-id="000c04c6-591f-4b53-cb7b-3203d428e5dc" style="opacity: 0" class="hero-heading">father</h1>
       </div>
     </section>
+    
 
     <div class="service-banner"><div class="w-layout-blockcontainer main-container w-container"></div></div>
 
-    <div class="services-section" style="padding: 50px">
+    <div class="services-section" style="padding: 50px;">
       <div class="w-layout-blockcontainer main-container w-container">
         <div class="services-grid">
           <div data-w-id="832138de-57b6-ca63-9eea-a54f5fda3540" style="opacity: 0" class="services-item">
@@ -82,9 +140,10 @@
     <br />
     <br />
     <br />
+
     <footer class="footer">
       <div class="footer-container">
-        <div class="footer-column">
+        <div class="footer-column" id="footer-links">
           <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
           <a href="#" onclick="openModal('terms')">Terms & Conditions</a>
           <a href="#" onclick="openModal('about')">About</a>
@@ -128,7 +187,7 @@
             <a href="https://www.linkedin.com/company/quote-father/"><i class="fab fa-linkedin"></i></a>
             <a href="https://app.dealum.com/#/company/publicprofile/74008/y3tp59x94runf29uy5cnrvzt17mtw1n9"><i class="fa-solid fa-id-card"></i></a>
           </div>
-          <hr class="footer-line" />
+          <hr class="footer-line"/>
           <p class="footer-copy">&copy; 2025 Quote Father co. All rights reserved.</p>
         </div>
 
