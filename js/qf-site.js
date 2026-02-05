@@ -4,171 +4,159 @@
 
   const i18n = {
     en: {
-      slogan: "EMPOWERING Ideas, Structuring Dialogue, Transforming Decisions with Technology.",
-      productsTitle: "Products",
+      transition: "ENTERING",
+      scroll: "Scroll",
+      slogan: "Empowering ideas, structuring dialogue, transforming decisions with technology.",
+      about_kicker: "About",
+      about_text: "We build disciplined web products for governance, structure, and decision-making — where culture meets systems.",
+      vision_kicker: "Vision",
+      vision_text: "Translate complex thinking into usable systems: clear workflows, accountable decisions, and durable institutions.",
       servicesTitle: "Services",
-      services_1_title: "Governance Systems on Chain",
-      services_1_text: "Smart-contract based decision workflows built for auditability, integrity, and long-term institutional trust.",
-      services_2_title: "Structured Communication Consulting",
-      services_2_text: "Architecture for dialogue and policy-making across enterprises, NGOs, and public institutions.",
-      product_fasil_desc: "A web app that structures proposals, voting, and institutional decisions with clarity.",
-      product_vestara_desc: "A web app for disciplined dialogue: issues, arguments, and outcomes — traceable by design.",
-      product_soon_title: "Coming Soon",
-      product_soon_desc: "A third product is being shaped — quietly.",
+      services_1_title: "Systems & Governance Architecture",
+      services_1_text: "We design decision workflows and governance structures, then translate them into clear product experiences.",
+      services_2_title: "Build, Deploy, Iterate",
+      services_2_text: "We implement robust web apps with disciplined UI, intentional transitions, and measurable iteration cycles.",
+      productsTitle: "Products",
+      available: "Available",
       open: "Open",
-      soon: "Soon",
-      footer_privacy: "Privacy Policy",
-      footer_terms: "Terms & Conditions",
-      footer_about: "About",
-      footer_contact: "Contact",
-      transition: "ENTERING"
+      product_fasil_desc: "A web app for structured governance workflows: propose, deliberate, decide, and archive with clarity.",
+      product_vestara_desc: "A web app for organizing dialogue and proposals into coherent, reviewable institutional processes.",
+      product_soon_title: "Third Product",
+      soon: "Coming soon",
+      product_soon_desc: "Quietly in progress. A product that tightens the bridge between culture, governance, and execution.",
+      soon_link: "Soon →",
+      footer_note: "Framing truth through order.",
+      footer_contact: "contact@quotefather.com"
     },
     ar: {
-      slogan: "تمكين الأفكار، تنظيم الحوار، وتحويل القرارات عبر التكنولوجيا.",
-      productsTitle: "المنتجات",
+      transition: "دخول",
+      scroll: "اسحب للأسفل",
+      slogan: "نُمكّن الأفكار، وننظّم الحوار، ونحوّل القرار إلى نظام عبر التقنية.",
+      about_kicker: "من نحن",
+      about_text: "نبني منتجات ويب منضبطة للحوكمة والبنية وصناعة القرار — حيث تلتقي الثقافة مع الأنظمة.",
+      vision_kicker: "الرؤية",
+      vision_text: "نحوّل التفكير المعقّد إلى أنظمة قابلة للاستخدام: مسارات واضحة، قرارات مسؤولة، ومؤسسات أكثر صلابة.",
       servicesTitle: "الخدمات",
-      services_1_title: "حوكمة رقمية على السلسلة",
-      services_1_text: "تدفقات قرار مبنية على العقود الذكية—قابلة للتدقيق، عالية النزاهة، ومصممة لثقة مؤسسية طويلة الأمد.",
-      services_2_title: "استشارات التواصل المنظّم",
-      services_2_text: "تصميم بنية للحوار وصناعة السياسات داخل الشركات والمنظمات والمؤسسات العامة.",
-      product_fasil_desc: "تطبيق ويب ينظّم المقترحات والتصويت والقرارات المؤسسية بوضوح وانضباط.",
-      product_vestara_desc: "تطبيق ويب للحوار المنضبط: قضايا، حجج، ومخرجات—قابلة للتتبّع بالتصميم.",
-      product_soon_title: "قريبًا",
-      product_soon_desc: "منتج ثالث قيد التشكل—بهدوء.",
+      services_1_title: "هندسة الأنظمة والحوكمة",
+      services_1_text: "نصمّم مسارات اتخاذ القرار وبُنى الحوكمة ثم نحولها إلى تجربة منتج واضحة ومنظمة.",
+      services_2_title: "بناء، نشر، تطوير",
+      services_2_text: "ننفّذ تطبيقات ويب قوية بواجهة منضبطة وانتقالات مقصودة ودورات تحسين قابلة للقياس.",
+      productsTitle: "المنتجات",
+      available: "متاح",
       open: "فتح",
+      product_fasil_desc: "تطبيق ويب لمسارات حوكمة منظمة: اقتراح، مداولة، قرار، وأرشفة بوضوح.",
+      product_vestara_desc: "تطبيق ويب لتنظيم الحوار والمقترحات ضمن عمليات مؤسسية قابلة للمراجعة.",
+      product_soon_title: "المنتج الثالث",
       soon: "قريبًا",
-      footer_privacy: "سياسة الخصوصية",
-      footer_terms: "الشروط والأحكام",
-      footer_about: "من نحن",
-      footer_contact: "تواصل",
-      transition: "دخول"
+      product_soon_desc: "قيد التطوير بهدوء. منتج يعزّز الجسر بين الثقافة والحوكمة والتنفيذ.",
+      soon_link: "قريبًا →",
+      footer_note: "صياغة الحقيقة عبر النظام.",
+      footer_contact: "contact@quotefather.com"
     }
   };
 
-  function setHtmlDirLang(lang){
-    const html = document.documentElement;
-    html.lang = lang === "ar" ? "ar" : "en";
-    html.dir = lang === "ar" ? "rtl" : "ltr";
+  function setYear(){
+    const y = document.getElementById("year");
+    if(y) y.textContent = String(new Date().getFullYear());
   }
 
-  function applyI18n(lang){
+  function applyLang(lang){
     const dict = i18n[lang] || i18n.en;
-    setHtmlDirLang(lang);
 
-    document.querySelectorAll("[data-i18n]").forEach((el)=>{
+    // document dir + lang
+    document.documentElement.lang = lang === "ar" ? "ar" : "en";
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+    // toggle buttons
+    const btnEn = document.getElementById("lang-en");
+    const btnAr = document.getElementById("lang-ar");
+    if(btnEn && btnAr){
+      btnEn.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
+      btnAr.setAttribute("aria-pressed", lang === "ar" ? "true" : "false");
+    }
+
+    // translate
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key = el.getAttribute("data-i18n");
       if(!key) return;
-      const val = dict[key];
-      if(typeof val === "string"){
-        el.textContent = val;
+      if(dict[key] !== undefined){
+        el.textContent = dict[key];
       }
     });
 
-    // Update toggle states
-    const btnAr = document.getElementById("lang-ar");
+    // footer email link text/href
+    const contact = document.querySelector('.qf-footer-link[href^="mailto:"]');
+    if(contact){
+      const email = dict.footer_contact || contact.textContent.trim();
+      contact.textContent = email;
+      contact.setAttribute("href", "mailto:" + email);
+    }
+
+    localStorage.setItem(STORAGE_LANG, lang);
+  }
+
+  function initLang(){
+    const saved = localStorage.getItem(STORAGE_LANG);
+    const lang = saved === "ar" ? "ar" : "en";
+    applyLang(lang);
+
     const btnEn = document.getElementById("lang-en");
-    if(btnAr && btnEn){
-      btnAr.setAttribute("aria-pressed", String(lang === "ar"));
-      btnEn.setAttribute("aria-pressed", String(lang === "en"));
-    }
+    const btnAr = document.getElementById("lang-ar");
+    if(btnEn) btnEn.addEventListener("click", ()=>applyLang("en"));
+    if(btnAr) btnAr.addEventListener("click", ()=>applyLang("ar"));
   }
 
-  function splitText(el){
-    // Keep words spacing
-    const text = el.textContent;
-    el.textContent = "";
-    for(const ch of text){
-      const span = document.createElement("span");
-      span.className = "split-char";
-      span.textContent = ch === " " ? "\u00A0" : ch;
-      el.appendChild(span);
-    }
-  }
-
-  function runIntroOnce(){
+  function playIntroOnce(){
     const visited = localStorage.getItem(STORAGE_VISITED) === "true";
+    // Mark body as intro-capable (CSS expects .intro)
+    document.body.classList.add("intro");
+
     if(visited){
-      document.body.classList.add("no-intro");
+      document.body.classList.remove("intro");
       return;
     }
+
+    // start intro
+    document.body.classList.add("intro-on");
     localStorage.setItem(STORAGE_VISITED, "true");
-    document.body.classList.add("intro-animate");
 
-    // Text motion for hero headings
-    const heroHeadings = document.querySelectorAll(".hero-heading");
-    heroHeadings.forEach((h, idx)=>{
-      splitText(h);
-      // Stagger via inline animation-delay
-      h.querySelectorAll(".split-char").forEach((sp, j)=>{
-        sp.style.animationDelay = (0.15*idx + j*0.012) + "s";
-      });
-    });
-
-    // Slogan motion
-    const slogan = document.querySelector(".hero-text");
-    if(slogan){
-      splitText(slogan);
-      slogan.querySelectorAll(".split-char").forEach((sp, j)=>{
-        sp.style.animationDelay = (0.35 + j*0.006) + "s";
-      });
-    }
-
-    // Turn off intro class after animations
-    setTimeout(()=>{ document.body.classList.remove("intro-animate"); }, 2500);
+    // end intro flag after animations
+    window.setTimeout(()=>{
+      document.body.classList.remove("intro");
+      document.body.classList.remove("intro-on");
+    }, 1400);
   }
 
-  function bindLangToggle(){
-    const btnAr = document.getElementById("lang-ar");
-    const btnEn = document.getElementById("lang-en");
-    if(btnAr){
-      btnAr.addEventListener("click", ()=>{
-        localStorage.setItem(STORAGE_LANG, "ar");
-        applyI18n("ar");
-      });
-    }
-    if(btnEn){
-      btnEn.addEventListener("click", ()=>{
-        localStorage.setItem(STORAGE_LANG, "en");
-        applyI18n("en");
-      });
-    }
-  }
-
-  function bindPageTransitions(){
+  function showTransition(text){
     const overlay = document.getElementById("page-transition");
     if(!overlay) return;
-
-    // Set overlay text based on lang
-    const lang = localStorage.getItem(STORAGE_LANG) || "en";
-    const dict = i18n[lang] || i18n.en;
     const t = overlay.querySelector(".pt-text");
-    if(t) t.textContent = dict.transition;
-
-    document.querySelectorAll("a[href]").forEach((a)=>{
-      const href = a.getAttribute("href");
-      if(!href) return;
-      const isExternal = href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:");
-      const isHash = href.startsWith("#");
-      if(isExternal || isHash) return;
-
-      a.addEventListener("click", (e)=>{
-        // allow modifiers
-        if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
-        overlay.classList.add("active");
-        setTimeout(()=>{ window.location.href = href; }, 520);
-      });
-    });
-
-    // On load, ensure overlay hidden
-    window.addEventListener("pageshow", ()=> overlay.classList.remove("active"));
+    if(t && typeof text === "string") t.textContent = text;
+    overlay.classList.add("is-on");
   }
 
-  document.addEventListener("DOMContentLoaded", ()=>{
-    const lang = localStorage.getItem(STORAGE_LANG) || "en";
-    applyI18n(lang);
-    bindLangToggle();
-    bindPageTransitions();
-    runIntroOnce();
-  });
+  function initTransitions(){
+    document.addEventListener("click", (e)=>{
+      const a = e.target && e.target.closest ? e.target.closest('a[data-transition="true"]') : null;
+      if(!a) return;
+      const href = a.getAttribute("href");
+      if(!href || href.startsWith("#") || href.startsWith("mailto:")) return;
+
+      // Only intercept same-origin navigations
+      if(href.startsWith("http")) return;
+
+      e.preventDefault();
+      const lang = localStorage.getItem(STORAGE_LANG) === "ar" ? "ar" : "en";
+      showTransition((i18n[lang]||i18n.en).transition || "ENTERING");
+
+      window.setTimeout(()=>{ window.location.href = href; }, 520);
+    });
+  }
+
+  // init
+  setYear();
+  initLang();
+  initTransitions();
+  // intro after first paint
+  window.requestAnimationFrame(()=>playIntroOnce());
 })();
