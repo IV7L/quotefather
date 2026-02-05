@@ -1,6 +1,7 @@
-(function(){
+(function () {
   const STORAGE_LANG = "qf_lang";
   const STORAGE_VISITED = "qf_visited";
+  const STORAGE_GRID_DONE = "qf_grid_done";
 
   const i18n = {
     en: {
@@ -26,7 +27,7 @@
       product_soon_desc: "Quietly in progress. A product that tightens the bridge between culture, governance, and execution.",
       soon_link: "Soon →",
       footer_note: "Framing truth through order.",
-      footer_contact: "contact@quotefather.com"
+      footer_contact: "contact@quotefather.com",
     },
     ar: {
       transition: "دخول",
@@ -51,42 +52,38 @@
       product_soon_desc: "قيد التطوير بهدوء. منتج يعزّز الجسر بين الثقافة والحوكمة والتنفيذ.",
       soon_link: "قريبًا →",
       footer_note: "صياغة الحقيقة عبر النظام.",
-      footer_contact: "contact@quotefather.com"
-    }
+      footer_contact: "contact@quotefather.com",
+    },
   };
 
-  function setYear(){
+  function setYear() {
     const y = document.getElementById("year");
-    if(y) y.textContent = String(new Date().getFullYear());
+    if (y) y.textContent = String(new Date().getFullYear());
   }
 
-  function applyLang(lang){
+  function applyLang(lang) {
     const dict = i18n[lang] || i18n.en;
 
-    // document dir + lang
     document.documentElement.lang = lang === "ar" ? "ar" : "en";
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-    // toggle buttons
     const btnEn = document.getElementById("lang-en");
     const btnAr = document.getElementById("lang-ar");
-    if(btnEn && btnAr){
+    if (btnEn && btnAr) {
       btnEn.setAttribute("aria-pressed", lang === "en" ? "true" : "false");
       btnAr.setAttribute("aria-pressed", lang === "ar" ? "true" : "false");
     }
 
-    // translate
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
-      if(!key) return;
-      if(dict[key] !== undefined){
+      if (!key) return;
+      if (dict[key] !== undefined) {
         el.textContent = dict[key];
       }
     });
 
-    // footer email link text/href
     const contact = document.querySelector('.qf-footer-link[href^="mailto:"]');
-    if(contact){
+    if (contact) {
       const email = dict.footer_contact || contact.textContent.trim();
       contact.textContent = email;
       contact.setAttribute("href", "mailto:" + email);
@@ -95,83 +92,85 @@
     localStorage.setItem(STORAGE_LANG, lang);
   }
 
-  function initLang(){
+  function initLang() {
     const saved = localStorage.getItem(STORAGE_LANG);
     const lang = saved === "ar" ? "ar" : "en";
     applyLang(lang);
 
     const btnEn = document.getElementById("lang-en");
     const btnAr = document.getElementById("lang-ar");
-    if(btnEn) btnEn.addEventListener("click", ()=>applyLang("en"));
-    if(btnAr) btnAr.addEventListener("click", ()=>applyLang("ar"));
+    if (btnEn) btnEn.addEventListener("click", () => applyLang("en"));
+    if (btnAr) btnAr.addEventListener("click", () => applyLang("ar"));
   }
 
-  function playIntroOnce(){
+  function playIntroOnce() {
     const visited = localStorage.getItem(STORAGE_VISITED) === "true";
-    // Mark body as intro-capable (CSS expects .intro)
     document.body.classList.add("intro");
 
-    if(visited){
+    if (visited) {
       document.body.classList.remove("intro");
       return;
     }
 
-    // start intro
     document.body.classList.add("intro-on");
     localStorage.setItem(STORAGE_VISITED, "true");
 
-    // end intro flag after animations
-    window.setTimeout(()=>{
+    window.setTimeout(() => {
       document.body.classList.remove("intro");
       document.body.classList.remove("intro-on");
-    }, 1400);
+    }, 900); // faster
   }
 
-  function showTransition(text){
+  function showTransition(text) {
     const overlay = document.getElementById("page-transition");
-    if(!overlay) return;
+    if (!overlay) return;
     const t = overlay.querySelector(".pt-text");
-    if(t && typeof text === "string") t.textContent = text;
+    if (t && typeof text === "string") t.textContent = text;
     overlay.classList.add("is-on");
   }
 
-  function initTransitions(){
-    document.addEventListener("click", (e)=>{
+  function initTransitions() {
+    document.addEventListener("click", (e) => {
       const a = e.target && e.target.closest ? e.target.closest('a[data-transition="true"]') : null;
-      if(!a) return;
-      const href = a.getAttribute("href");
-      if(!href || href.startsWith("#") || href.startsWith("mailto:")) return;
+      if (!a) return;
 
-      // Only intercept same-origin navigations
-      if(href.startsWith("http")) return;
+      const href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto:")) return;
+      if (href.startsWith("http")) return;
 
       e.preventDefault();
-      const lang = localStorage.getItem(STORAGE_LANG) === "ar" ? "ar" : "en";
-      showTransition((i18n[lang]||i18n.en).transition || "ENTERING");
 
-      window.setTimeout(()=>{ window.location.href = href; }, 520);
+      const lang = localStorage.getItem(STORAGE_LANG) === "ar" ? "ar" : "en";
+      showTransition((i18n[lang] || i18n.en).transition || "ENTERING");
+
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, 220); // faster
     });
+  }
+
+  /* GRID BUILD — first time only (separate from intro visited) */
+  function buildGridOnce() {
+    const page = document.querySelector(".qf-page");
+    if (!page) return;
+
+    const gridDone = localStorage.getItem(STORAGE_GRID_DONE) === "true";
+    if (gridDone) {
+      page.classList.add("grid-built");
+      return;
+    }
+
+    // animate first time
+    setTimeout(() => page.classList.add("grid-built"), 180);
+    localStorage.setItem(STORAGE_GRID_DONE, "true");
   }
 
   // init
   setYear();
   initLang();
   initTransitions();
+  buildGridOnce();
+
   // intro after first paint
-  window.requestAnimationFrame(()=>playIntroOnce());
-})();
-
-/* Full-page grid build animation – first visit only */
-(function () {
-  const page = document.querySelector('.qf-page');
-  if (!page) return;
-
-  const visited = localStorage.getItem("qf_visited") === "true";
-
-  if (!visited) {
-    setTimeout(() => page.classList.add("grid-built"), 350);
-    // intro already sets qf_visited=true, so we don't set it here
-  } else {
-    page.classList.add("grid-built");
-  }
+  window.requestAnimationFrame(() => playIntroOnce());
 })();
