@@ -160,3 +160,23 @@
   // intro after first paint
   window.requestAnimationFrame(()=>playIntroOnce());
 })();
+
+/* Grid build animation – first visit only */
+(function () {
+  const hero = document.querySelector('.hero-section');
+  if (!hero) return;
+
+  const visited = localStorage.getItem('qf-visited');
+
+  if (!visited) {
+    // delay so page feels intentional
+    setTimeout(() => {
+      hero.classList.add('grid-built');
+    }, 400);
+
+    localStorage.setItem('qf-visited', 'true');
+  } else {
+    // show grid immediately on return visits
+    hero.classList.add('grid-built');
+  }
+})();

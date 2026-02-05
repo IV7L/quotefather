@@ -1,3 +1,75 @@
+/* HERO squared background – build from sides to center */
+.hero-section{
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(113,90,90,.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(113,90,90,.25) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: .35;
+  pointer-events: none;
+
+  /* start hidden: reveal grows from sides toward center */
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%,
+    transparent 49.5%,
+    #000 49.5%,
+    #000 50.5%,
+    transparent 50.5%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to right,
+    transparent 0%,
+    transparent 49.5%,
+    #000 49.5%,
+    #000 50.5%,
+    transparent 50.5%,
+    transparent 100%
+  );
+
+  -webkit-mask-size: 0% 100%;
+  mask-size: 0% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  transition: -webkit-mask-size 1.4s cubic-bezier(.16,.84,.44,1);
+  transition: mask-size 1.4s cubic-bezier(.16,.84,.44,1);
+}
+
+/* built state: reveal expands outward from center, so grid appears from both sides to center */
+.hero-section.grid-built::before{
+  -webkit-mask-size: 220% 100%;
+  mask-size: 220% 100%;
+}
+.hero-section::before{ filter: contrast(1.15); }
+.hero-section.grid-built::before{ filter: contrast(1.0); }
+
+/* keep content above grid */
+.hero-section > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Fallback if mask isn't supported */
+@supports not ((mask-image: linear-gradient(#000,#000)) or (-webkit-mask-image: linear-gradient(#000,#000))){
+  .hero-section::before{
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 1.0s ease, transform 1.4s cubic-bezier(.16,.84,.44,1);
+  }
+  .hero-section.grid-built::before{
+    opacity: .35;
+    transform: scale(1);
+  }
+}
 :root{
   --bg: #37353e;
   --surface: #44444e;
@@ -230,4 +302,19 @@ body.intro.intro-on #products .qf-section-title{animation: rise .6s ease .05s fo
 
 @keyframes rise{
   to{opacity: 1; transform: translateY(0);}
+}
+/* Language-based typography */
+html[lang="ar"] body{
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif;
+}
+
+html[lang="en"] body{
+  font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+}
+
+/* Headings stay cultural */
+.hero-heading,
+.section-title,
+.product-name{
+  font-family: "Cormorant Garamond", serif;
 }
