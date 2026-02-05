@@ -96,6 +96,78 @@ body{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+/* Full-page squared background – build from sides to center */
+.qf-page{
+  position: relative;
+}
+
+/* the grid layer */
+.qf-page::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(to right, rgba(113,90,90,.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(113,90,90,.18) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: .35;
+
+  /* start hidden, reveal from BOTH sides into the middle */
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%,
+    transparent 49.5%,
+    #000 49.5%,
+    #000 50.5%,
+    transparent 50.5%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to right,
+    transparent 0%,
+    transparent 49.5%,
+    #000 49.5%,
+    #000 50.5%,
+    transparent 50.5%,
+    transparent 100%
+  );
+
+  -webkit-mask-size: 0% 100%;
+  mask-size: 0% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  /* IMPORTANT: one transition line (yours currently gets overwritten) */
+  transition: -webkit-mask-size 1.4s cubic-bezier(.16,.84,.44,1), mask-size 1.4s cubic-bezier(.16,.84,.44,1);
+}
+
+/* built state */
+.qf-page.grid-built::before{
+  -webkit-mask-size: 220% 100%;
+  mask-size: 220% 100%;
+}
+
+/* keep all content above the fixed grid */
+.qf-page > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* Fallback if mask isn't supported */
+@supports not ((mask-image: linear-gradient(#000,#000)) or (-webkit-mask-image: linear-gradient(#000,#000))){
+  .qf-page::before{
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 1.0s ease, transform 1.4s cubic-bezier(.16,.84,.44,1);
+  }
+  .qf-page.grid-built::before{
+    opacity: .35;
+    transform: scale(1);
+  }
+}
 h1,h2,h3{
   font-family: "Cormorant Garamond",serif;
   letter-spacing: .02em;

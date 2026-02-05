@@ -161,17 +161,17 @@
   window.requestAnimationFrame(()=>playIntroOnce());
 })();
 
-/* Grid build animation – first visit only (uses same visited key as intro) */
+/* Full-page grid build animation – first visit only */
 (function () {
-  const hero = document.querySelector('.qf-hero.hero-section');
-  if (!hero) return;
+  const page = document.querySelector('.qf-page');
+  if (!page) return;
 
   const visited = localStorage.getItem("qf_visited") === "true";
 
   if (!visited) {
-    setTimeout(() => hero.classList.add("grid-built"), 350);
-    // NOTE: intro logic already sets qf_visited=true, so we don't need to set it again here
+    setTimeout(() => page.classList.add("grid-built"), 350);
+    // intro already sets qf_visited=true, so we don't set it here
   } else {
-    hero.classList.add("grid-built");
+    page.classList.add("grid-built");
   }
 })();
