@@ -161,22 +161,17 @@
   window.requestAnimationFrame(()=>playIntroOnce());
 })();
 
-/* Grid build animation – first visit only */
+/* Grid build animation – first visit only (uses same visited key as intro) */
 (function () {
-  const hero = document.querySelector('.hero-section');
+  const hero = document.querySelector('.qf-hero.hero-section');
   if (!hero) return;
 
-  const visited = localStorage.getItem('qf-visited');
+  const visited = localStorage.getItem("qf_visited") === "true";
 
   if (!visited) {
-    // delay so page feels intentional
-    setTimeout(() => {
-      hero.classList.add('grid-built');
-    }, 400);
-
-    localStorage.setItem('qf-visited', 'true');
+    setTimeout(() => hero.classList.add("grid-built"), 350);
+    // NOTE: intro logic already sets qf_visited=true, so we don't need to set it again here
   } else {
-    // show grid immediately on return visits
-    hero.classList.add('grid-built');
+    hero.classList.add("grid-built");
   }
 })();

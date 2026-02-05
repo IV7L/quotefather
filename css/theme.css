@@ -40,8 +40,7 @@
   -webkit-mask-position: center;
   mask-position: center;
 
-  transition: -webkit-mask-size 1.4s cubic-bezier(.16,.84,.44,1);
-  transition: mask-size 1.4s cubic-bezier(.16,.84,.44,1);
+  transition: -webkit-mask-size 1.4s cubic-bezier(.16,.84,.44,1), mask-size 1.4s cubic-bezier(.16,.84,.44,1);
 }
 
 /* built state: reveal expands outward from center, so grid appears from both sides to center */
@@ -305,7 +304,7 @@ body.intro.intro-on #products .qf-section-title{animation: rise .6s ease .05s fo
 }
 /* Language-based typography */
 html[lang="ar"] body{
-  font-family: "El Messiri", system-ui, -apple-system, sans-serif;
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
 }
 
 html[lang="en"] body{
