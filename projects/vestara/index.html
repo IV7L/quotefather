@@ -1,32 +1,261 @@
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vestara — Quote Father</title>
 
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Vestara — Quote Father</title>
+    <link href="../../css/webflow-style.css" rel="stylesheet" />
+    <link href="../../css/theme.css" rel="stylesheet" />
 
-<link href="../../css/webflow-style.css" rel="stylesheet"/><link href="../../css/theme.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/></head>
-<body><div class="lang-toggle"><button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button><button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button></div><div id="page-transition"><div class="pt-text">ENTERING</div></div>
-<main style="max-width:900px;margin:80px auto;padding:0 20px;">
-<a href="/" style="opacity:.6;text-decoration:none;">← العودة</a>
-<h1 style="margin-top:24px;">Fasil</h1>
-<p style="line-height:1.8;opacity:.85;">
-      Fasil منصة مناظرات آلية مبنية على النقاش المنظّم
-      وفق قواعد Robert’s Rules of Order.
-      الهدف هو تحويل الجدل الفوضوي إلى قرارات واضحة.
-    </p>
-<h2 style="margin-top:40px;">الفكرة</h2>
-<ul style="line-height:1.8;opacity:.85;">
-<li>تنظيم الحوار إلى اقتراحات واعتراضات وتصويت</li>
-<li>تقليل الفوضى الفكرية</li>
-<li>تمكين المجتمعات والفرق من اتخاذ قرارات</li>
-</ul>
-<h2 style="margin-top:40px;">الحالة</h2>
-<p style="opacity:.8;">قيد التطوير (Prototype)</p>
-<p style="margin-top:48px;opacity:.6;">
-      Quote Father — نبني أنظمة ذكية لتنظيم الفكر، النقاش، والتجارة.
-    </p>
-</main>
-<script src="../../js/qf-site.js"></script></body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      html[dir="rtl"] body {
+        direction: rtl;
+        text-align: right;
+      }
+      html[dir="ltr"] body {
+        direction: ltr;
+        text-align: left;
+      }
+
+      /* Force fonts to override Webflow/theme defaults */
+      html[lang="ar"] body,
+      html[lang="ar"] body * {
+        font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+      }
+      html[lang="en"] body,
+      html[lang="en"] body * {
+        font-family: "Cormorant Garamond", ui-serif, Georgia, serif !important;
+      }
+
+      .lang-toggle {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        display: flex;
+        gap: 8px;
+        z-index: 9999;
+      }
+      html[dir="rtl"] .lang-toggle {
+        right: auto;
+        left: 18px;
+      }
+      .lang-btn {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.25);
+        color: inherit;
+        padding: 8px 10px;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+      .lang-btn[aria-pressed="true"] {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      a.inline-link {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        opacity: 0.92;
+      }
+      a.inline-link:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="lang-toggle">
+      <button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button>
+      <button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button>
+    </div>
+
+    <div id="page-transition"><div class="pt-text">ENTERING</div></div>
+
+    <main style="max-width: 900px; margin: 80px auto; padding: 0 20px">
+      <a href="/" style="opacity: 0.6; text-decoration: none" data-i18n="back">← Back</a>
+
+      <h1 style="margin-top: 24px" data-i18n="title">Vestara</h1>
+
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="p1"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p2"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p3"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="problemTitle">The Problem with Traditional E-commerce</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="problemIntro"></p>
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="problem1"></li>
+        <li data-i18n="problem2"></li>
+        <li data-i18n="problem3"></li>
+      </ul>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="problemOutro"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="moodTitle">From Mood to Market</h2>
+
+      <h3 style="margin-top: 18px; opacity: 0.95" data-i18n="layer1Title">Layer One — Insight Engine</h3>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="layer1Intro"></p>
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="layer1a"></li>
+        <li data-i18n="layer1b"></li>
+        <li data-i18n="layer1c"></li>
+      </ul>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="layer1Outro"></p>
+
+      <h3 style="margin-top: 22px; opacity: 0.95" data-i18n="layer2Title">Layer Two — Commerce Execution</h3>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="layer2"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="decisionTitle">Commerce as a Decision System</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="decisionIntro"></p>
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="decision1"></li>
+        <li data-i18n="decision2"></li>
+        <li data-i18n="decision3"></li>
+        <li data-i18n="decision4"></li>
+      </ul>
+
+      <h2 style="margin-top: 40px" data-i18n="explainTitle">Explainable Intelligence</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="explain1"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="explain2"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="statusTitle">Project Status</h2>
+      <p style="opacity: 0.9" data-i18n="statusLink"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 10px" data-i18n="statusDetail"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="alignedTitle">Aligned with Quote Father</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="aligned"></p>
+
+      <p style="margin-top: 48px; opacity: 0.6" data-i18n="footer"></p>
+    </main>
+
+    <script src="../../js/qf-site.js"></script>
+
+    <script>
+      const I18N = {
+        en: {
+          back: "← Back",
+          title: "Vestara",
+
+          p1: "Vestara is an AI-native e-commerce system designed to eliminate guesswork from selling.",
+          p2: "Instead of reacting to products or trends in isolation, Vestara begins by understanding communities—modeling their collective mood, behavioral intent, and cultural direction—before translating insight into market decisions.",
+          p3: "Vestara does not optimize sales; it optimizes understanding.",
+
+          problemTitle: "The Problem with Traditional E-commerce",
+          problemIntro: "Modern e-commerce systems suffer from fundamental limitations:",
+          problem1: "Recommendations are often inaccurate or generic",
+          problem2: "Sellers rely on assumptions rather than real demand",
+          problem3: "Trends are chased after they peak, not understood as they emerge",
+          problemOutro: "As a result, markets respond too late, and communities are offered what is available—not what is needed. Vestara was created to reverse this flow.",
+
+          moodTitle: "From Mood to Market",
+          layer1Title: "Layer One — Insight Engine",
+          layer1Intro: "An adaptive AI system analyzes social signals, engagement patterns, search behavior, and textual discourse to model:",
+          layer1a: "Emotional state (optimistic, stressed, aspirational)",
+          layer1b: "Behavioral intent (buying, exploring, waiting)",
+          layer1c: "Cultural direction (minimalism, luxury, sustainability, etc.)",
+          layer1Outro: "This layer is predictive, reactive, and continuously adaptive.",
+
+          layer2Title: "Layer Two — Commerce Execution",
+          layer2: "The resulting market decisions are executed through a Shopify-based commerce layer, serving as a delivery surface rather than a decision-maker. Different communities can experience different offerings based on their modeled needs.",
+
+          decisionTitle: "Commerce as a Decision System",
+          decisionIntro: "Vestara is not a recommendation engine. It is a decision system.",
+          decision1: "Products are selected, not suggested",
+          decision2: "Collections are curated based on insight, not inventory",
+          decision3: "Timing and relevance are driven by community state, not guesswork",
+          decision4: "Human overrides are intentionally excluded, allowing the system to operate with full algorithmic conviction and consistency.",
+
+          explainTitle: "Explainable Intelligence",
+          explain1: "While autonomous, Vestara is designed to remain explainable. Decisions can be traced back to observable signals and behavioral patterns, ensuring accountability without manual interference.",
+          explain2: "The system prioritizes long-term trust over short-term optimization.",
+
+          statusTitle: "Project Status",
+          statusLink: '<a class="inline-link" href="https://vara.quotefather.com" target="_blank" rel="noopener noreferrer">In development (MVP)</a>',
+          statusDetail: "Vestara currently exists as a minimum viable system focused on refining community modeling, decision accuracy, and adaptive learning over time.",
+
+          alignedTitle: "Aligned with Quote Father",
+          aligned: "Vestara represents Quote Father’s approach to commerce: transforming raw social signals into structured decisions through disciplined systems design.",
+
+          footer: 'Quote Father — We build intelligent systems to organize thought, structure dialogue, and transform insight into decisions. Visit <a class="inline-link" href="https://vara.quotefather.com" target="_blank" rel="noopener noreferrer">Vara</a>.',
+        },
+
+        ar: {
+          back: "← العودة",
+          title: "Vestara",
+
+          p1: "Vestara هو نظام تجارة إلكترونية أصيل بالذكاء الاصطناعي، صُمّم لإزالة التخمين من عملية البيع.",
+          p2: "بدلًا من التفاعل مع المنتجات أو الترندات بشكلٍ معزول، يبدأ Vestara بفهم المجتمعات — نمذجة المزاج الجمعي، والنية السلوكية، والاتجاه الثقافي — ثم تحويل هذه الرؤى إلى قرارات سوقية.",
+          p3: "Vestara لا يهدف إلى تحسين المبيعات؛ بل يهدف إلى تحسين الفهم.",
+
+          problemTitle: "مشكلة التجارة الإلكترونية التقليدية",
+          problemIntro: "تعاني أنظمة التجارة الإلكترونية الحديثة من قيود جوهرية:",
+          problem1: "التوصيات غالبًا غير دقيقة أو عامة جدًا",
+          problem2: "يعتمد البائعون على افتراضات بدلًا من الطلب الحقيقي",
+          problem3: "يتم追追 الترند بعد ذروته بدلًا من فهمه أثناء تشكّله",
+          problemOutro: "نتيجةً لذلك، تستجيب الأسواق متأخرة، وتُقدَّم للمجتمعات المنتجات المتاحة — لا المنتجات المطلوبة. صُمّم Vestara لعكس هذا الاتجاه.",
+
+          moodTitle: "من المزاج إلى السوق",
+          layer1Title: "الطبقة الأولى — محرك الرؤى",
+          layer1Intro: "يحلّل نظام ذكاء اصطناعي تكيفي الإشارات الاجتماعية، وأنماط التفاعل، وسلوك البحث، والخطاب النصي لنمذجة:",
+          layer1a: "الحالة العاطفية (تفاؤل، توتر، طموح)",
+          layer1b: "النية السلوكية (شراء، استكشاف، انتظار)",
+          layer1c: "الاتجاه الثقافي (بساطة، فخامة، استدامة، إلخ)",
+          layer1Outro: "هذه الطبقة تنبؤية وتفاعلية ومتجددة باستمرار.",
+
+          layer2Title: "الطبقة الثانية — تنفيذ التجارة",
+          layer2: "تُنفَّذ القرارات السوقية الناتجة عبر طبقة تجارة مبنية على Shopify تعمل كسطح تسليم لا كصانع قرار. ويمكن لمجتمعات مختلفة أن ترى عروضًا مختلفة بناءً على احتياجاتها المُنمذجة.",
+
+          decisionTitle: "التجارة كنظام قرار",
+          decisionIntro: "Vestara ليس محرك توصيات. إنه نظام قرار.",
+          decision1: "يتم اختيار المنتجات، لا اقتراحها",
+          decision2: "تُنسّق المجموعات بناءً على الرؤية لا المخزون",
+          decision3: "التوقيت والملاءمة يقودهما وضع المجتمع لا التخمين",
+          decision4: "تُستبعد التدخلات البشرية عمدًا ليعمل النظام بقناعة خوارزمية كاملة وباتساق دائم.",
+
+          explainTitle: "ذكاء قابل للتفسير",
+          explain1: "رغم استقلاليته، صُمّم Vestara ليظل قابلًا للتفسير. يمكن تتبع القرارات إلى إشارات ملحوظة وأنماط سلوكية، لضمان المساءلة دون تدخل يدوي.",
+          explain2: "يعطي النظام أولوية للثقة طويلة المدى على التحسين قصير المدى.",
+
+          statusTitle: "حالة المشروع",
+          statusLink: '<a class="inline-link" href="https://vara.quotefather.com" target="_blank" rel="noopener noreferrer">قيد التطوير (MVP)</a>',
+          statusDetail: "يوجد Vestara حاليًا كنظام بحدّه الأدنى يركز على تحسين نمذجة المجتمعات، ودقة القرار، والتعلّم التكيفي عبر الزمن.",
+
+          alignedTitle: "متوافق مع Quote Father",
+          aligned: "يمثل Vestara مقاربة Quote Father للتجارة: تحويل الإشارات الاجتماعية الخام إلى قرارات منظّمة عبر تصميم أنظمة منضبط.",
+
+          footer: 'Quote Father — نبني أنظمة ذكية لتنظيم الفكر وبناء الحوار وتحويل الرؤى إلى قرارات. زر <a class="inline-link" href="https://vara.quotefather.com" target="_blank" rel="noopener noreferrer">Vara</a>.',
+        },
+      };
+
+      function applyLang(lang) {
+        const isAr = lang === "ar";
+        document.documentElement.lang = lang;
+        document.documentElement.dir = isAr ? "rtl" : "ltr";
+
+        const btnEn = document.getElementById("lang-en");
+        const btnAr = document.getElementById("lang-ar");
+        btnEn.setAttribute("aria-pressed", String(!isAr));
+        btnAr.setAttribute("aria-pressed", String(isAr));
+
+        // Use innerHTML so links work (status link, footer link, etc.)
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const val = I18N?.[lang]?.[key];
+          if (typeof val === "string") el.innerHTML = val;
+        });
+
+        localStorage.setItem("qf_lang", lang);
+      }
+
+      const saved = localStorage.getItem("qf_lang");
+      const defaultLang = saved || (navigator.language?.startsWith("ar") ? "ar" : "en");
+      applyLang(defaultLang);
+
+      document.getElementById("lang-en").addEventListener("click", () => applyLang("en"));
+      document.getElementById("lang-ar").addEventListener("click", () => applyLang("ar"));
+    </script>
+  </body>
 </html>

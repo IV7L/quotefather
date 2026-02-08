@@ -1,33 +1,466 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Fasil — Quote Father</title>
+    <title>Qubit Coding Center — Quote Father</title>
 
     <link href="../../css/webflow-style.css" rel="stylesheet" />
     <link href="../../css/theme.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      .slide video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      /* Direction helpers */
+      html[dir="rtl"] body {
+        direction: rtl;
+        text-align: right;
+      }
+      html[dir="ltr"] body {
+        direction: ltr;
+        text-align: left;
+      }
+
+      /* Force fonts to override Webflow/theme defaults */
+      html[lang="ar"] body,
+      html[lang="ar"] body * {
+        font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+      }
+
+      html[lang="en"] body,
+      html[lang="en"] body * {
+        font-family: "Cormorant Garamond", ui-serif, Georgia, serif !important;
+      }
+
+      .lang-toggle {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        display: flex;
+        gap: 8px;
+        z-index: 9999;
+      }
+      html[dir="rtl"] .lang-toggle {
+        right: auto;
+        left: 18px;
+      }
+      .lang-btn {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.25);
+        color: inherit;
+        padding: 8px 10px;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+      .lang-btn[aria-pressed="true"] {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      /* Inline link style */
+      a.inline-link {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        opacity: 0.92;
+      }
+      a.inline-link:hover {
+        opacity: 1;
+      }
+
+      /* Carousel */
+      .carousel {
+        margin-top: 22px;
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .carousel-track {
+        display: flex;
+        transition: transform 450ms ease;
+        will-change: transform;
+      }
+      .slide {
+        min-width: 100%;
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .slide-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
+        display: flex;
+        align-items: flex-end;
+        padding: 16px 16px 14px;
+      }
+      .slide-caption {
+        max-width: 92%;
+        line-height: 1.4;
+        opacity: 0.95;
+        font-size: 16px;
+      }
+      .carousel-controls {
+        position: absolute;
+        inset-inline: 12px;
+        bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: none;
+      }
+      .carousel-btn {
+        pointer-events: auto;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(0, 0, 0, 0.35);
+        color: inherit;
+        padding: 8px 10px;
+        border-radius: 12px;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+      }
+      .carousel-dots {
+        pointer-events: auto;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: transparent;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .dot[aria-current="true"] {
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 1;
+      }
+    </style>
   </head>
+
   <body>
-    <div class="lang-toggle"><button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button><button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button></div>
+    <div class="lang-toggle">
+      <button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button>
+      <button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button>
+    </div>
+
     <div id="page-transition"><div class="pt-text">ENTERING</div></div>
+
     <main style="max-width: 900px; margin: 80px auto; padding: 0 20px">
-      <a href="/" style="opacity: 0.6; text-decoration: none">← العودة</a>
-      <h1 style="margin-top: 24px">Fasil</h1>
-      <p style="line-height: 1.8; opacity: 0.85">Fasil منصة مناظرات آلية مبنية على النقاش المنظّم وفق قواعد Robert’s Rules of Order. الهدف هو تحويل الجدل الفوضوي إلى قرارات واضحة.</p>
-      <h2 style="margin-top: 40px">الفكرة</h2>
-      <ul style="line-height: 1.8; opacity: 0.85">
-        <li>تنظيم الحوار إلى اقتراحات واعتراضات وتصويت</li>
-        <li>تقليل الفوضى الفكرية</li>
-        <li>تمكين المجتمعات والفرق من اتخاذ قرارات</li>
+      <!-- back to your main site (keep / if you want), and a separate link in text can go external -->
+      <a href="/" style="opacity: 0.6; text-decoration: none" data-i18n="back">← Back</a>
+
+      <h1 style="margin-top: 24px" data-i18n="title">Qubit Coding Center</h1>
+
+      <!-- Carousel -->
+      <div class="carousel" aria-label="Qubit photos">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Replace these images with your real photos -->
+          <div class="slide">
+            <img src="../../images/1.png" alt="" />
+            <div class="slide-overlay">
+              <div class="slide-caption" data-i18n="slide1">A learning room built for thinking, not memorization.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <video src="../../images/2.mp4" playsinline muted controls preload="metadata"></video>
+
+            <div class="slide-overlay">
+              <div class="slide-caption" data-i18n="slide2">Progress through tests and evaluated projects — not attendance.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="../../images/3.jpg" alt="" />
+            <div class="slide-overlay">
+              <div class="slide-caption" data-i18n="slide2">Progress through tests and evaluated projects — not attendance.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="../../images/4.png" alt="" />
+            <div class="slide-overlay">
+              <div class="slide-caption" data-i18n="slide3">Real challenges. Iteration. Failure. Then clarity.</div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <img src="../../images/5.png" alt="" />
+            <div class="slide-overlay">
+              <div class="slide-caption" data-i18n="slide4">Final phase: independently design, build, and present a complete solution.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prevBtn" type="button" aria-label="Previous">‹</button>
+
+          <div class="carousel-dots" id="dots" aria-label="Slides"></div>
+
+          <button class="carousel-btn" id="nextBtn" type="button" aria-label="Next">›</button>
+        </div>
+      </div>
+
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 18px" data-i18n="p1"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p2"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p3"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="whyTitle">Why Qubit Was Created</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="whyIntro"></p>
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="why1"></li>
+        <li data-i18n="why2"></li>
+        <li data-i18n="why3"></li>
       </ul>
-      <h2 style="margin-top: 40px">الحالة</h2>
-      <p style="opacity: 0.8">قيد التطوير (Prototype)</p>
-      <p style="margin-top: 48px; opacity: 0.6">Quote Father — نبني أنظمة ذكية لتنظيم الفكر، النقاش، والتجارة.</p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="whyOutro"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="pathTitle">A Structured Learning Path</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="pathIntro"></p>
+      <ol style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="path1"></li>
+        <li data-i18n="path2"></li>
+        <li data-i18n="path3"></li>
+        <li data-i18n="path4"></li>
+        <li data-i18n="path5"></li>
+        <li data-i18n="path6"></li>
+      </ol>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="pathOutro"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="buildTitle">Learning by Building</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="buildIntro"></p>
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="build1"></li>
+        <li data-i18n="build2"></li>
+        <li data-i18n="build3"></li>
+        <li data-i18n="build4"></li>
+      </ul>
+
+      <h2 style="margin-top: 40px" data-i18n="impactTitle">Measured Impact</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="impact1"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="impact2"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="statusTitle">Project Status</h2>
+      <p style="opacity: 0.9" data-i18n="status"></p>
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 10px" data-i18n="statusDetail"></p>
+
+      <h2 style="margin-top: 40px" data-i18n="systemsTitle">From Education to Systems</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="systems"></p>
+
+      <p style="margin-top: 48px; opacity: 0.6" data-i18n="footer"></p>
     </main>
+
     <script src="../../js/qf-site.js"></script>
+
+    <script>
+      const I18N = {
+        en: {
+          back: "← Back",
+          title: "Qubit Coding Center",
+
+          slide1: "A learning room built for thinking, not memorization.",
+          slide2: "Progress through tests and evaluated projects — not attendance.",
+          slide3: "Real challenges. Iteration. Failure. Then clarity.",
+          slide4: "Final phase: independently design, build, and present a complete solution.",
+
+          p1: "Qubit Coding Center was a non-profit, in-person programming training initiative created to make learning software development accessible, structured, and meaningful.",
+          p2: "At a time when programming education had become expensive and fragmented, Qubit focused on one core belief: strong programming starts with strong thinking.",
+          p3: "Rather than overwhelming students with tools and tasks, Qubit rebuilt learning from the ground up.",
+
+          whyTitle: "Why Qubit Was Created",
+          whyIntro: "Modern programming education often fails students by:",
+          why1: "Prioritizing syntax over logic",
+          why2: "Overwhelming learners with tasks without a clear learning path",
+          why3: "Producing graduates who can write code but struggle to think like developers",
+          whyOutro: "Qubit was created to correct these gaps by focusing on logic, reasoning, and structured problem-solving as the foundation of all technical skills.",
+
+          pathTitle: "A Structured Learning Path",
+          pathIntro: "Qubit introduced a clear, disciplined learning model built around a six-level software development path using Python:",
+          path1: "Programming logic and computational thinking",
+          path2: "Core programming fundamentals",
+          path3: "Object-Oriented Programming (OOP)",
+          path4: "Algorithms and problem-solving",
+          path5: "Applied development and practice",
+          path6: "A final, real-world project",
+          pathOutro: "Progression was not automatic. Students advanced only through tests, evaluated projects, and continuous assessment, ensuring real understanding at every stage.",
+
+          buildTitle: "Learning by Building",
+          buildIntro: "Education at Qubit was practical and immersive:",
+          build1: "Students worked on real programming challenges",
+          build2: "Learning happened through discussion, iteration, and failure",
+          build3: "Projects were treated as learning tools, not assignments",
+          build4: "The final project phase required students to independently design, build, and present a complete software solution.",
+
+          impactTitle: "Measured Impact",
+          impact1: "Over its lifetime, Qubit Coding Center trained and graduated more than 300 students. Many continued learning independently, applied their skills in personal or professional projects, or transitioned toward early work opportunities.",
+          impact2: "More importantly, Qubit proved that structured thinking produces stronger developers than content overload.",
+
+          statusTitle: "Project Status",
+          status: "Completed",
+          statusDetail: "Qubit Coding Center concluded after achieving its intended educational goals due to funding limitations. It remains a foundational experience that shaped the philosophy and direction of Quote Father.",
+
+          systemsTitle: "From Education to Systems",
+          systems: "The principles tested at Qubit—structure, clarity, and disciplined thinking—later evolved into broader systems at Quote Father, influencing projects focused on dialogue, governance, and decision-making.",
+
+          footer: 'Explore more: <a class="inline-link" href="https://qcc.quotefather.com" target="_blank" rel="noopener noreferrer">Qubit Coding Center</a> — Quote Father builds intelligent systems that organize thought, structure dialogue, and transform insight into decisions.',
+        },
+
+        ar: {
+          back: "← العودة",
+          title: "مركز البرمجة التعليمي كيوبت",
+
+          slide1: "غرفة تعلّم مبنية للتفكير، لا للحفظ.",
+          slide2: "التقدّم عبر اختبارات ومشاريع مُقيَّمة — لا عبر الحضور.",
+          slide3: "تحديات حقيقية. تكرار. فشل. ثم وضوح.",
+          slide4: "المرحلة النهائية: تصميم وبناء وعرض حل برمجي متكامل بشكل مستقل.",
+
+          p1: "كان مركز كيوبت مبادرة تدريب برمجي حضورية غير ربحية، أُنشئت لجعل تعلّم تطوير البرمجيات متاحًا ومنظّمًا وذا معنى.",
+          p2: "في وقت أصبحت فيه تعليم البرمجة مكلفًا ومجزّأً، ركّز كيوبت على قناعة واحدة: البرمجة القوية تبدأ بتفكير قوي.",
+          p3: "بدلًا من إغراق الطلاب بالأدوات والمهام، أعاد كيوبت بناء التعلّم من الأساس.",
+
+          whyTitle: "لماذا تم إنشاء كيوبت",
+          whyIntro: "غالبًا ما يفشل تعليم البرمجة الحديث الطلاب عبر:",
+          why1: "تقديم الصياغة (Syntax) على المنطق",
+          why2: "إرباك المتعلمين بمهام دون مسار تعلّم واضح",
+          why3: "تخريج طلاب يكتبون كودًا لكنهم يجدون صعوبة في التفكير كمطوّرين",
+          whyOutro: "تم إنشاء كيوبت لتصحيح هذه الفجوات عبر التركيز على المنطق، والاستدلال، وحلّ المشكلات بشكل منظّم كأساس لكل المهارات التقنية.",
+
+          pathTitle: "مسار تعلّم منظّم",
+          pathIntro: "قدّم كيوبت نموذج تعلّم واضحًا ومنضبطًا مبنيًا حول مسار تطوير برمجيات من ست مستويات باستخدام Python:",
+          path1: "منطق البرمجة والتفكير الحاسوبي",
+          path2: "أساسيات البرمجة الجوهرية",
+          path3: "البرمجة كائنية التوجّه (OOP)",
+          path4: "الخوارزميات وحلّ المشكلات",
+          path5: "التطوير التطبيقي والممارسة",
+          path6: "مشروع نهائي واقعي",
+          pathOutro: "لم تكن الترقية تلقائية. كان الطلاب يتقدمون فقط عبر الاختبارات والمشاريع المُقيَّمة والتقييم المستمر، لضمان فهم حقيقي في كل مرحلة.",
+
+          buildTitle: "التعلّم عبر البناء",
+          buildIntro: "كان التعليم في كيوبت عمليًا وغامرًا:",
+          build1: "عمل الطلاب على تحديات برمجية حقيقية",
+          build2: "حدث التعلّم عبر النقاش والتكرار والفشل",
+          build3: "اعتُبرت المشاريع أدوات تعلّم لا واجبات",
+          build4: "تطلبت المرحلة النهائية من الطلاب تصميم وبناء وعرض حل برمجي متكامل بشكل مستقل.",
+
+          impactTitle: "أثر قابل للقياس",
+          impact1: "على مدار عمره، درّب مركز كيوبت وخرّج أكثر من 300 طالب. واصل كثيرون التعلّم ذاتيًا، وطبقوا مهاراتهم في مشاريع شخصية أو مهنية، أو انتقلوا نحو فرص عمل مبكرة.",
+          impact2: "والأهم أن كيوبت أثبت أن التفكير المنظّم يصنع مطوّرين أقوى من إغراق المحتوى.",
+
+          statusTitle: "حالة المشروع",
+          status: "مكتمل",
+          statusDetail: "اختُتم مركز كيوبت بعد تحقيق أهدافه التعليمية المقصودة بسبب محدودية التمويل. ويظل تجربة تأسيسية شكّلت فلسفة Quote Father واتجاهها.",
+
+          systemsTitle: "من التعليم إلى الأنظمة",
+          systems: "المبادئ التي اختُبرت في كيوبت — البنية، والوضوح، والتفكير المنضبط — تطورت لاحقًا إلى أنظمة أوسع في Quote Father، وأثّرت على مشاريع تركز على الحوار والحوكمة وصنع القرار.",
+
+          footer: 'اكتشف المزيد: <a class="inline-link" href="https://qcc.quotefather.com" target="_blank" rel="noopener noreferrer">مركز البرمجة التعليمي كيوبت</a> — تبني Quote Father أنظمة ذكية تنظّم الفكر، وتبني الحوار، وتحول البصيرة إلى قرارات.',
+        },
+      };
+
+      function applyLang(lang) {
+        const isAr = lang === "ar";
+        document.documentElement.lang = lang;
+        document.documentElement.dir = isAr ? "rtl" : "ltr";
+
+        const btnEn = document.getElementById("lang-en");
+        const btnAr = document.getElementById("lang-ar");
+        btnEn.setAttribute("aria-pressed", String(!isAr));
+        btnAr.setAttribute("aria-pressed", String(isAr));
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const val = I18N?.[lang]?.[key];
+          if (typeof val === "string") el.innerHTML = val; // allow inline links
+        });
+
+        localStorage.setItem("qf_lang", lang);
+      }
+
+      const saved = localStorage.getItem("qf_lang");
+      const defaultLang = saved || (navigator.language?.startsWith("ar") ? "ar" : "en");
+      applyLang(defaultLang);
+
+      document.getElementById("lang-en").addEventListener("click", () => applyLang("en"));
+      document.getElementById("lang-ar").addEventListener("click", () => applyLang("ar"));
+
+      /* ------- Simple carousel logic ------- */
+      const track = document.getElementById("carouselTrack");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const dotsWrap = document.getElementById("dots");
+
+      const slides = Array.from(track.children);
+      let idx = 0;
+
+      function renderDots() {
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "dot";
+          b.setAttribute("aria-current", i === idx ? "true" : "false");
+          b.addEventListener("click", () => {
+            idx = i;
+            updateCarousel();
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function updateCarousel() {
+        track.style.transform = `translateX(${idx * -100}%)`;
+        Array.from(dotsWrap.children).forEach((d, i) => d.setAttribute("aria-current", i === idx ? "true" : "false"));
+
+        pauseAllVideosExcept(idx);
+      }
+
+      function pauseAllVideosExcept(activeIndex) {
+        slides.forEach((slide, i) => {
+          const v = slide.querySelector("video");
+          if (!v) return;
+          if (i !== activeIndex) {
+            v.pause();
+            v.currentTime = 0; // remove this line if you want it to resume where it stopped
+          }
+        });
+      }
+
+      function next() {
+        idx = (idx + 1) % slides.length;
+        updateCarousel();
+      }
+      function prev() {
+        idx = (idx - 1 + slides.length) % slides.length;
+        updateCarousel();
+      }
+
+      prevBtn.addEventListener("click", prev);
+      nextBtn.addEventListener("click", next);
+
+      renderDots();
+      updateCarousel();
+
+      // Optional: auto-play (comment out if you don't want it)
+      setInterval(next, 6500);
+    </script>
   </body>
 </html>

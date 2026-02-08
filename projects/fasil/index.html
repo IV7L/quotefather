@@ -1,32 +1,179 @@
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fasil — Quote Father</title>
 
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fasil — Quote Father</title>
+    <link href="../../css/webflow-style.css" rel="stylesheet" />
+    <link href="../../css/theme.css" rel="stylesheet" />
 
-<link href="../../css/webflow-style.css" rel="stylesheet"/><link href="../../css/theme.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/></head>
-<body><div class="lang-toggle"><button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button><button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button></div><div id="page-transition"><div class="pt-text">ENTERING</div></div>
-<main style="max-width:900px;margin:80px auto;padding:0 20px;">
-<a href="/" style="opacity:.6;text-decoration:none;">← العودة</a>
-<h1 style="margin-top:24px;">Fasil</h1>
-<p style="line-height:1.8;opacity:.85;">
-      Fasil منصة مناظرات آلية مبنية على النقاش المنظّم
-      وفق قواعد Robert’s Rules of Order.
-      الهدف هو تحويل الجدل الفوضوي إلى قرارات واضحة.
-    </p>
-<h2 style="margin-top:40px;">الفكرة</h2>
-<ul style="line-height:1.8;opacity:.85;">
-<li>تنظيم الحوار إلى اقتراحات واعتراضات وتصويت</li>
-<li>تقليل الفوضى الفكرية</li>
-<li>تمكين المجتمعات والفرق من اتخاذ قرارات</li>
-</ul>
-<h2 style="margin-top:40px;">الحالة</h2>
-<p style="opacity:.8;">قيد التطوير (Prototype)</p>
-<p style="margin-top:48px;opacity:.6;">
-      Quote Father — نبني أنظمة ذكية لتنظيم الفكر، النقاش، والتجارة.
-    </p>
-</main>
-<script src="../../js/qf-site.js"></script></body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      html[lang="ar"] body,
+      html[lang="ar"] body * {
+        font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+      }
+
+      html[lang="en"] body,
+      html[lang="en"] body * {
+        font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+      }
+      html[dir="rtl"] body {
+        direction: rtl;
+        text-align: right;
+      }
+      html[dir="ltr"] body {
+        direction: ltr;
+        text-align: left;
+      }
+
+      html[lang="ar"] body {
+        font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
+      }
+      html[lang="en"] body {
+        font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+      }
+
+      .lang-toggle {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        display: flex;
+        gap: 8px;
+        z-index: 9999;
+      }
+      html[dir="rtl"] .lang-toggle {
+        right: auto;
+        left: 18px;
+      }
+      .lang-btn {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.25);
+        color: inherit;
+        padding: 8px 10px;
+        border-radius: 40px;
+        cursor: pointer;
+      }
+      .lang-btn[aria-pressed="true"] {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="lang-toggle">
+      <button aria-pressed="true" class="lang-btn" id="lang-en" type="button">EN</button>
+      <button aria-pressed="false" class="lang-btn" id="lang-ar" type="button">AR</button>
+    </div>
+
+    <div id="page-transition"><div class="pt-text">ENTERING</div></div>
+
+    <main style="max-width: 900px; margin: 80px auto; padding: 0 20px">
+      <a href="/" style="opacity: 0.6; text-decoration: none" data-i18n="back">← Back</a>
+
+      <h1 style="margin-top: 24px" data-i18n="title">Fasil</h1>
+
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="p1">Fasil is an automated web platform for structured debates, designed to restore clarity, fairness, and accountability to collective discussion.</p>
+
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p2">Built on an adapted web-based implementation of Robert’s Rules of Order, Fasil transforms unstructured arguments into guided dialogue that leads to verifiable decisions rather than endless disagreement.</p>
+
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="p3">By combining procedural debate frameworks with AI mentorship, Fasil creates an environment where ideas are evaluated on reasoning, not volume or influence.</p>
+
+      <h2 style="margin-top: 40px" data-i18n="ideaTitle">The Idea</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="ideaIntro">Fasil exists to address the intellectual chaos of modern discussion platforms by introducing structure at every stage of dialogue:</p>
+
+      <ul style="line-height: 1.8; opacity: 0.85; margin-top: 12px">
+        <li data-i18n="idea1">Organize discussions into formal motions, objections, timed responses, and transparent voting</li>
+        <li data-i18n="idea2">Guide participants using AI to manage turns, detect logical fallacies, and improve argument quality</li>
+        <li data-i18n="idea3">Enable communities, institutions, and teams to reach decisions through structured, explainable processes</li>
+        <li data-i18n="idea4">Preserve debate outcomes and voting results through verifiable, tamper-resistant mechanisms</li>
+      </ul>
+
+      <p style="line-height: 1.8; opacity: 0.85; margin-top: 14px" data-i18n="ideaOutro">Rather than amplifying opinions, Fasil is designed to separate strong ideas from weak ones.</p>
+
+      <h2 style="margin-top: 40px" data-i18n="statusTitle">Status</h2>
+      <p style="opacity: 0.85" data-i18n="status"></p>
+      <p style="line-height: 1.8; opacity: 0.8; margin-top: 10px" data-i18n="statusDetail">The platform is currently evolving as a prototype focused on refining debate flow, AI guidance, and decision transparency for real-world use cases across education, civic dialogue, and institutional governance.</p>
+
+      <h2 style="margin-top: 40px" data-i18n="aboutTitle">About Quote Father</h2>
+      <p style="line-height: 1.8; opacity: 0.85" data-i18n="about">Quote Father builds intelligent systems that organize thought, structure dialogue, and transform insight into decisions — across education, governance, and commerce.</p>
+    </main>
+
+    <script src="../../js/qf-site.js"></script>
+
+    <script>
+      const I18N = {
+        en: {
+          back: "← Back",
+          title: "Fasil",
+          p1: "Fasil is an automated web platform for structured debates, designed to restore clarity, fairness, and accountability to collective discussion.",
+          p2: "Built on an adapted web-based implementation of Robert’s Rules of Order, Fasil transforms unstructured arguments into guided dialogue that leads to verifiable decisions rather than endless disagreement.",
+          p3: "By combining procedural debate frameworks with AI mentorship, Fasil creates an environment where ideas are evaluated on reasoning, not volume or influence.",
+          ideaTitle: "The Idea",
+          ideaIntro: "Fasil exists to address the intellectual chaos of modern discussion platforms by introducing structure at every stage of dialogue:",
+          idea1: "Organize discussions into formal motions, objections, timed responses, and transparent voting",
+          idea2: "Guide participants using AI to manage turns, detect logical fallacies, and improve argument quality",
+          idea3: "Enable communities, institutions, and teams to reach decisions through structured, explainable processes",
+          idea4: "Preserve debate outcomes and voting results through verifiable, tamper-resistant mechanisms",
+          ideaOutro: "Rather than amplifying opinions, Fasil is designed to separate strong ideas from weak ones.",
+          statusTitle: "Status",
+          status: "In development <a href='https://fasil.quotefather.com' target='_blank' rel='noopener noreferrer'>(MVP)</a>",
+          statusDetail: "The platform is currently evolving as a prototype focused on refining debate flow, AI guidance, and decision transparency for real-world use cases across education, civic dialogue, and institutional governance.",
+          aboutTitle: "About Quote Father",
+          about: "Quote Father builds intelligent systems that organize thought, structure dialogue, and transform insight into decisions — across education, governance, and commerce.",
+        },
+        ar: {
+          back: "← العودة",
+          title: "Fasil",
+          p1: "Fasil منصة ويب آلية للمناظرات المنظّمة، صُممت لاستعادة الوضوح والعدالة والمساءلة في النقاشات الجماعية.",
+          p2: "مبنية على تطبيق ويب مُعدّل لقواعد Robert’s Rules of Order، تحوّل Fasil الجدل غير المنظّم إلى حوار موجّه يقود إلى قرارات قابلة للتحقق بدلًا من خلاف لا ينتهي.",
+          p3: "من خلال دمج أطر المناظرات الإجرائية مع الإرشاد بالذكاء الاصطناعي، تخلق Fasil بيئة تُقيَّم فيها الأفكار بناءً على قوة المنطق لا على ارتفاع الصوت أو النفوذ.",
+          ideaTitle: "الفكرة",
+          ideaIntro: "توجد Fasil لمعالجة الفوضى الفكرية في منصات النقاش الحديثة عبر إدخال البنية في كل مرحلة من مراحل الحوار:",
+          idea1: "تنظيم النقاش إلى اقتراحات رسمية، واعتراضات، وردود محددة بالوقت، وتصويت شفاف",
+          idea2: "إرشاد المشاركين عبر الذكاء الاصطناعي لإدارة الأدوار، وكشف المغالطات المنطقية، وتحسين جودة الحجج",
+          idea3: "تمكين المجتمعات والمؤسسات والفرق من الوصول إلى قرارات عبر عمليات منظّمة وقابلة للتفسير",
+          idea4: "حفظ نتائج المناظرة ونتائج التصويت عبر آليات قابلة للتحقق ومقاومة للتلاعب",
+          ideaOutro: "بدلاً من تضخيم الآراء، صُممت Fasil لتمييز الأفكار القوية من الضعيفة.",
+          statusTitle: "الحالة",
+          status: "قيد التطوير <a href='https://fasil.quotefather.com' target='_blank' rel='noopener noreferrer'>(MVP)</a>",
+          mvp: `<a href="https://fasil.quotefather.com" target="_blank" rel="noopener noreferrer">MVP</a>`,
+          statusDetail: "تتطور المنصة حاليًا كنموذج أولي يركز على تحسين تدفق المناظرة، وإرشاد الذكاء الاصطناعي، وشفافية القرار لحالات استخدام واقعية عبر التعليم، والحوار المدني، وحوكمة المؤسسات.",
+          aboutTitle: "عن Quote Father",
+          about: "تبني Quote Father أنظمة ذكية تنظّم الفكر، وتبني الحوار، وتحول البصيرة إلى قرارات — عبر التعليم، والحوكمة، والتجارة.",
+        },
+      };
+
+      function applyLang(lang) {
+        const isAr = lang === "ar";
+        document.documentElement.lang = lang;
+        document.documentElement.dir = isAr ? "rtl" : "ltr";
+
+        const btnEn = document.getElementById("lang-en");
+        const btnAr = document.getElementById("lang-ar");
+        btnEn.setAttribute("aria-pressed", String(!isAr));
+        btnAr.setAttribute("aria-pressed", String(isAr));
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const val = I18N?.[lang]?.[key];
+          if (typeof val === "string") el.innerHTML = val;
+        });
+
+        localStorage.setItem("qf_lang", lang);
+      }
+
+      const saved = localStorage.getItem("qf_lang");
+      const defaultLang = saved || (navigator.language?.startsWith("ar") ? "ar" : "en");
+      applyLang(defaultLang);
+
+      document.getElementById("lang-en").addEventListener("click", () => applyLang("en"));
+      document.getElementById("lang-ar").addEventListener("click", () => applyLang("ar"));
+    </script>
+  </body>
 </html>
