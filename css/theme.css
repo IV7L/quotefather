@@ -274,6 +274,8 @@ html[dir="rtl"] .qf-scrollhint {
   color: var(--text);
   background: rgba(113, 90, 90, .12);
   white-space: nowrap;
+  display:flex;
+  gap:8px;
 }
 
 .qf-badge--muted {
@@ -496,3 +498,38 @@ html[lang="ar"] body {
 html[lang="en"] body {
   font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, sans-serif;
 }
+
+html[lang="ar"] h2.qf-section-title[data-i18n="servicesTitle"]{
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  line-height: 1.4; /* نفس إعدادك الحالي */
+  direction: rtl;
+}
+html[lang="ar"] h3.qf-card-title[data-i18n="services_1_title"]{
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  line-height: 1.4; /* نفس إعدادك الحالي */
+  direction: rtl;
+}
+html[lang="ar"] h3.qf-card-title[data-i18n="services_2_title"]{
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  line-height: 1.4; /* نفس إعدادك الحالي */
+  direction: rtl;
+}
+
+html[lang="ar"] h2.qf-section-title[data-i18n="productsTitle"]{
+  font-family: "El Messiri", system-ui, -apple-system, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  line-height: 1.4; /* نفس إعدادك الحالي */
+  direction: rtl;
+}
+
